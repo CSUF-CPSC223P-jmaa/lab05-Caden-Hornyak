@@ -18,8 +18,11 @@ def summation(n, term):
     ...       ['While', 'For'])
     True
     """
-    assert n >= 1
+    if n <= 1:
+        return term(n)
     "*** YOUR CODE HERE ***"
+    
+    return term(n) + summation(n-1, term)
 
 
 def paths(m, n):
@@ -34,8 +37,14 @@ def paths(m, n):
     1
     >>> paths(1, 157)
     1
+
+    
     """
     "*** YOUR CODE HERE ***"
+    if m == 1 or n == 1:
+        return 1
+    
+    return paths(m-1, n) + paths(m, n-1)
 
 
 def pascal(row, column):
@@ -51,6 +60,12 @@ def pascal(row, column):
     6
     """
     "*** YOUR CODE HERE ***"
+    if column == 0:
+        return 1
+    elif row == 0:
+        return 0
+    else:
+        return pascal(row-1, column) + pascal(row-1,column-1)
 
 
 def double_eights(n):
@@ -75,3 +90,10 @@ def double_eights(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n / 10 == 0:
+        return False
+    
+    if n % 10 == 8 and (n / 10) % 10 == 8:
+        return True
+    
+    return double_eights(n / 10)
